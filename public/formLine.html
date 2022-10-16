@@ -2,36 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="script/sc_add_line.js"></script>
+    <script src="/script/sc_add_line.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <script src="/script/bootstrap.min.js"></script>
     <title>Form to add a line</title>
 </head>
 <body>
 <!-- HEAD -->
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Saphony</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/dashboard.html">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/formLine.html">Create Line</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div id="menu"></div>
 <!-- CONTENT -->
 <div class="container mt-5">
-  <form class="row gy-2 gx-3 align-items-center">
+  <h2>Add line Prod to a site</h2>
+  <form class="row gy-2 gx-3 align-items-center" id="login-form">
     <div class="col-auto">
       <label class="visually-hidden" for="prodMinInput">Name</label>
       <input type="text"
@@ -49,12 +31,9 @@
              placeholder="Line Number :">
     </div>
     <div class="col-auto">
-      <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-      <select class="form-select" id="autoSizingSelect">
+      <label class="visually-hidden" for="selectSite">Preference</label>
+      <select class="form-select" id="selectSite" name="site_name_select">
         <option selected>Choose site</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
       </select>
     </div>
     <div class="col-auto">
@@ -62,5 +41,6 @@
     </div>
   </form>
 </div>
+<script src="/script/loadMenu.js"></script>
 </body>
 </html>

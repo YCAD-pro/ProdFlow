@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/script/bootstrap.min.js"></script>
+    <title>Login page</title>
+</head>
+<body>
+<!-- HEAD -->
+<div id="menu"></div>
+<!-- CONTENT -->
+<div class="container">
+<h1>Login :</h1>
+    <form id="userLoginForm" action="/login" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username or Email address</label>
+            <input type="text" class="form-control" id="username" name="nameInput" aria-describedby="loginHelp">
+            <div id="loginHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="passwordInput">
+        </div>
+        <button id="submitLogForm" type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+<script src="/script/loadMenu.js"></script>
+<script src="/script/formLogin.js"></script>
+</body>
+</html>
