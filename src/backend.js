@@ -1,5 +1,6 @@
 const fs = require("fs");
 const mySql = require("mysql2");
+const bcrypt = require('bcrypt')
 
 // ========================== BDD ========================== >
 let connBDD;
@@ -30,19 +31,19 @@ module.exports.login = function (req, res) {
         console.log('recherche de username')
         champ = 'username'
     }
+
     connBDD.query(`select password from user where ${champ} = ?`,
         [user],
         (err, data) => {
             // comparer le retour data(=password) avec celui envoyer
             console.log('data', data)
-            if (data.length > 0 && password === data[0].password){
+            if (data.length > 0 && bcrypt.compareSync(password, data[0].password)){
                 // si OK return un token
                 console.log('user ok')
                 res.json({token:'123-456-789'})
             } else {
                 // si NOK, renvoyer sur une page avec erreur dedans
                 //res.redirect('/login')
-                console.log('user Nok')
                 res.redirect('/login')
             }
         })
@@ -106,4 +107,21 @@ module.exports.test = (req, res) => {
             console.log(data)
             res.json(data)
         })
+}
+
+module.exports.createUser = (req, res) => {
+    let { username, email, password } = req.body
+    // console.log("user :", username, "| mail :", email, " | password :", password)
+    // by bcrypt =>
+    bcrypt.hash(password, 10, (err, hash) => {
+        let hashPassword = hash;
+        console.log(hashPassword)
+        connBDD.query('insert into user (email, username, password, role) VALUES (?, ?, ?, ?)',
+            [email, username, hashPassword, 'USER'],
+            (err, data) => {
+                console.log(data)
+                res.json(data)
+            })
+    })
+    //res.send('in test')
 }

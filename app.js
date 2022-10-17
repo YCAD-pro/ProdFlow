@@ -1,9 +1,9 @@
-const express = require('express');
-const bodyParser = require("body-parser");
+const express = require('express')
+const bodyParser = require("body-parser")
 const bcrypt = require('bcrypt')
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 const backend = require('./src/backend')
 // ========================== Variables globales ========================== >
@@ -21,6 +21,14 @@ const backend = require('./src/backend')
 app.get('/test', (req, res) => {
     backend.test(req, res)
 })
+
+app.get('/addUser', (req, res) => {
+    res.redirect('/createUser.html')
+})
+app.post('/addUser', (req, res) => {
+    backend.createUser(req, res)
+})
+
 
 app.get('/login', (req, res) => {
     res.redirect('/login.html')

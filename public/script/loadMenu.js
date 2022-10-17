@@ -22,6 +22,9 @@ const menu = `
           <a class="nav-link" href="/login">login</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/addUser">Create new User</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/test">test</a>
         </li>
       </ul>
