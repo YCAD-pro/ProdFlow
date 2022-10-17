@@ -13,10 +13,10 @@ const menu = `
           <a class="nav-link" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard.html">Dashboard</a>
+          <a class="nav-link" href="/dashboard">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/formLine.html">Create Line</a>
+          <a class="nav-link" href="/create-line">Create Line</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/login">login</a>

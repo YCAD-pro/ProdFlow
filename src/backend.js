@@ -1,6 +1,9 @@
 const fs = require("fs");
 const mySql = require("mysql2");
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const { v1: uuidv1 } = require('uuid')
+const {setUserToken} = require("./useBdd");
+const useBdd = require("./useBdd");
 
 // ========================== BDD ========================== >
 let connBDD;
@@ -31,8 +34,8 @@ module.exports.login = function (req, res) {
         console.log('recherche de username')
         champ = 'username'
     }
-
-    connBDD.query(`select password from user where ${champ} = ?`,
+    let token
+    connBDD.query(`select id, password from user where ${champ} = ?`,
         [user],
         (err, data) => {
             // comparer le retour data(=password) avec celui envoyer
@@ -40,7 +43,9 @@ module.exports.login = function (req, res) {
             if (data.length > 0 && bcrypt.compareSync(password, data[0].password)){
                 // si OK return un token
                 console.log('user ok')
-                res.json({token:'123-456-789'})
+                let token = uuidv1();
+                useBdd.setUserToken(data[0].id, token)
+                res.redirect('/logged/'+token)
             } else {
                 // si NOK, renvoyer sur une page avec erreur dedans
                 //res.redirect('/login')
